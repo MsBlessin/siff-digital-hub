@@ -1,0 +1,8 @@
+# Files Cloudflare should NOT publish as public static assets,
+# even though they exist in the repository.
+.git
+.gitignore
+.wrangler
+node_modules
+README.md
+wrangler.jsonc
