@@ -1,0 +1,88 @@
+{
+  "_instructions": "EDIT THIS FILE to update any link on the website. Change only the text inside the quotes after each 'url' or 'href' field. Do not remove commas or quotation marks. Save the file and refresh the site to see changes. Entries marked PLACEHOLDER need a real link from you before they will work.",
+
+  "zoom": {
+    "label": "Join Us On Zoom",
+    "url": "https://us02web.zoom.us/j/9525125530",
+    "nextSessionDate": "Tuesday 14th July 2026",
+    "nextSessionTime": "7pm (BST)"
+  },
+
+  "googleCalendar": {
+    "label": "View Calendar",
+    "url": "https://calendar.google.com/calendar/embed?src=e8b8d9b47a7894091c52adb2f99761e34a2e1fa2e909e6a491b16f5364662237%40group.calendar.google.com&ctz=Europe%2FLondon"
+  },
+
+  "googleForm": {
+    "label": "Submit a Question",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLScZGtVQFm3adnqiXSfC7oRMg7H0uXnAYRxy6zOSgpuTXxecrQ/viewform?usp=publish-editor"
+  },
+
+  "recordingsFolder": {
+    "label": "View Recordings (Google Drive folder)",
+    "url": "https://drive.google.com/file/d/1DoClDO3NST8gvP2Ms0noLerhM8G43dPL/view?usp=sharing",
+    "note": "Used as the default 'Listen (Zoom)' link for any teaching session below that does not yet have its own individual recording link."
+  },
+
+  "resourcesMasterFile": {
+    "label": "Resources master file (Google Drive)",
+    "url": "https://drive.google.com/file/d/1S5ucmcUsgrhXbdyCn4IZQtX72PbTtm3Y/view?usp=drive_link",
+    "note": "Original source file. The live site now uses native pages instead, but this is kept here for reference."
+  },
+
+  "aboutSourceFile": {
+    "label": "About SIFF source file (Google Drive)",
+    "url": "https://drive.google.com/file/d/1cTTKNLP_ngChZNhFzP4wwlvjk2TGko-u/view?usp=drive_link",
+    "note": "Original source file kept for reference only; the live About page is now a native page."
+  },
+
+  "social": {
+    "whatsapp": {
+      "label": "WhatsApp Community",
+      "url": "PLACEHOLDER-ADD-WHATSAPP-INVITE-LINK-HERE",
+      "note": "PLACEHOLDER: no WhatsApp invite link was present in the source design. Add your WhatsApp community invite link here."
+    },
+    "instagram": {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/singlesinfaith?igsh=NndnbWF2YTF0YTZz"
+    },
+    "youtube": {
+      "label": "YouTube",
+      "url": "https://youtube.com/@realityofgraceministriesintl?si=YHp-6kyq6YE164eF"
+    },
+    "facebook": {
+      "label": "Facebook",
+      "url": "PLACEHOLDER-ADD-FACEBOOK-PAGE-LINK-HERE",
+      "note": "PLACEHOLDER: source design marked Facebook as 'Coming Soon'. Add the page link here when ready."
+    },
+    "website": {
+      "label": "Website",
+      "url": "PLACEHOLDER-ADD-WEBSITE-URL-HERE",
+      "note": "PLACEHOLDER: source design marked this as 'Coming Soon'. Once this site has a custom domain, put it here too."
+    },
+    "email": {
+      "label": "Email",
+      "url": "mailto:thergmichurch@gmail.com"
+    }
+  },
+
+  "books": {
+    "singleMarriedSeparated": {
+      "title": "Single, Married, Separated… and Life After Divorce",
+      "author": "Myles Munroe",
+      "url": "PLACEHOLDER-ADD-AMAZON-OR-BOOK-LINK-HERE"
+    },
+    "fourthDimension": {
+      "title": "The Fourth Dimension",
+      "author": "David Yonggi Cho",
+      "url": "PLACEHOLDER-ADD-AMAZON-OR-BOOK-LINK-HERE"
+    },
+    "greaterGlory": {
+      "title": "Greater Glory",
+      "author": "Kenneth E. Hagin",
+      "url": "PLACEHOLDER-ADD-AMAZON-OR-BOOK-LINK-HERE"
+    }
+  },
+
+  "_teachingLibraryHelp": "Every 'Listen (Zoom)' link on the Teaching Library page currently points to the single 'recordingsFolder' link above (that mirrors the real site, where all recordings live in one Google Drive folder). If you later get a unique Zoom link for a specific session, open teaching-library.html, find that session's row, and replace its href directly — search for the session title to find it quickly."
+}
