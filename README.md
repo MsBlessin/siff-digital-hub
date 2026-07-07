@@ -6,17 +6,23 @@ This is the SIFF (Singles in Faith Fellowship) website, recreated as a plain HTM
 
 ```
 SIFF-Digital-Hub/
-├── index.html                 Home page ("Welcome to SIFF")
-├── resources.html              Resources hub page
-├── recommended-reading.html    Recommended Reading (books)
-├── teaching-library.html       Teaching Library (session recordings)
-├── about.html                  About SIFF
-├── 404.html                    Shown if a visitor hits a broken link
-├── links.json                  ⭐ EVERY external link in one place — edit this file, not the HTML
-├── css/styles.css              All colours, fonts, spacing (the "design system")
-├── js/main.js                  Small script that applies links.json to the pages
-└── assets/img/favicon.svg      Browser tab icon
+├── wrangler.jsonc              Cloudflare deploy config — points at public/, don't move it
+├── .gitignore / .assetsignore  Housekeeping — keeps build junk and internals off the live site
+├── README.md                   This file (not published to the live site)
+└── public/                     ⭐ Everything that is actually served on the live website
+    ├── index.html                 Home page ("Welcome to SIFF")
+    ├── resources.html              Resources hub page
+    ├── recommended-reading.html    Recommended Reading (books)
+    ├── teaching-library.html       Teaching Library (session recordings)
+    ├── about.html                  About SIFF
+    ├── 404.html                    Shown if a visitor hits a broken link
+    ├── links.json                  ⭐ EVERY external link in one place — edit this file, not the HTML
+    ├── css/styles.css              All colours, fonts, spacing (the "design system")
+    ├── js/main.js                  Small script that applies links.json to the pages
+    └── assets/img/favicon.svg      Browser tab icon
 ```
+
+All site files live inside `public/` — this keeps the repository's internal files (like `.git`) from ever being served publicly. When editing content, always edit files inside `public/`.
 
 ## The one file you'll edit: `links.json`
 
@@ -39,50 +45,36 @@ Current placeholders you'll likely want to fill in:
 
 ---
 
-## Recommended hosting: Cloudflare Pages (free, fast, reliable)
+## Live site
 
-Cloudflare Pages is free forever for a static site like this, includes free HTTPS, and makes adding a custom domain later a two-click job.
+This site is deployed and live at: **https://siff-community-hub.agnesakin.workers.dev**
 
-### Step 1 — Put the code on GitHub (Cloudflare deploys from a Git repo)
-1. Go to [github.com](https://github.com) and sign in (or create a free account).
-2. Click **New repository**. Name it e.g. `siff-digital-hub`. Keep it Public or Private (either works). Click **Create repository**.
-3. On your computer, open a terminal in this `SIFF-Digital-Hub` folder and run:
-   ```
-   git init
-   git add .
-   git commit -m "Initial SIFF Digital Hub site"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/siff-digital-hub.git
-   git push -u origin main
-   ```
-   (Replace `YOUR-USERNAME` with your GitHub username. If you don't use the terminal, GitHub's website also lets you drag-and-drop all these files into a new repository instead.)
+It's hosted on **Cloudflare** (via "Workers & Pages" → git-connected static site), deployed from the GitHub repository `MsBlessin/siff-digital-hub`, branch `main`. Every time a change is pushed to `main`, Cloudflare automatically rebuilds and redeploys within about a minute — no manual re-upload needed.
 
-### Step 2 — Connect Cloudflare Pages
-1. Go to [dash.cloudflare.com](https://dash.cloudflare.com) and sign in (free account).
-2. In the left sidebar, go to **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
-3. Authorize Cloudflare to access GitHub, then select your `siff-digital-hub` repository.
-4. Build settings: leave **Framework preset** as "None", **Build command** blank, **Build output directory** as `/` (root). Click **Save and Deploy**.
-5. Within a minute, Cloudflare gives you a live URL like `siff-digital-hub.pages.dev`. That's your live website.
+### How it's configured (for reference / rebuilding from scratch)
+1. Code lives in a GitHub repo, pushed via `git push`.
+2. In the Cloudflare dashboard: **Workers & Pages → Create → Pages tab → Connect to Git**, repository selected, then on the settings screen: Framework preset "None", build command blank, deploy command blank (Cloudflare auto-detects `npx wrangler deploy`).
+3. The repo includes a committed **`wrangler.jsonc`** at the root with `"assets": { "directory": "public" }` — this is required. Without a committed Wrangler config, Cloudflare's git-connected deploy treats every build as creating a brand-new Worker and fails with a "Worker already exists" error on the second deploy.
+4. All servable files live inside **`public/`**, not the repo root — this is what keeps `.git` and other repository internals from being published as if they were public pages.
 
-### Step 3 — Every future update is automatic
-From now on, whenever you edit `links.json` (or any file) and push the change to GitHub, Cloudflare automatically redeploys the site within seconds. No manual re-upload needed.
-
-### Step 4 — Add a custom domain later (e.g. `siffcommunity.org`)
+### Adding a custom domain later (e.g. `siffcommunity.org`)
 1. Buy a domain from any registrar (Cloudflare Registrar, Namecheap, GoDaddy, etc.).
-2. In Cloudflare Pages, open your project → **Custom domains** → **Set up a custom domain** → enter your domain and follow the on-screen DNS instructions.
-3. Cloudflare issues a free SSL certificate automatically — no redesign or code changes required, because the site was built to be domain-agnostic (all links are relative).
+2. In the Cloudflare dashboard, open the `siff-community-hub` project → **Custom domains** → **Set up a custom domain** → enter your domain and follow the on-screen DNS instructions.
+3. Cloudflare issues a free SSL certificate automatically — no redesign or code changes required, since every link on the site is relative.
 
 ---
 
 ## Alternative: GitHub Pages (also free)
 
-If you'd rather not use Cloudflare at all:
+If you'd rather not use Cloudflare at all, GitHub Pages works too, with one adjustment for the `public/` folder structure:
 
-1. Push this folder to a GitHub repository (same as Step 1 above).
+1. Code already lives in the `siff-digital-hub` GitHub repo (see above).
 2. In the repository, go to **Settings → Pages**.
-3. Under **Source**, choose the `main` branch and `/ (root)` folder, then **Save**.
-4. GitHub gives you a live URL like `https://YOUR-USERNAME.github.io/siff-digital-hub/` within a minute or two.
-5. To add a custom domain: **Settings → Pages → Custom domain**, enter your domain, then add the DNS records GitHub shows you (a `CNAME` record pointing to `YOUR-USERNAME.github.io`, or the four `A` records GitHub lists for an apex domain).
+3. Under **Source**, GitHub Pages only offers `/ (root)` or `/docs` as folder choices (not `public`) — so either:
+   - **Easiest:** rename the `public/` folder to `docs/` in the repo (and update `wrangler.jsonc`'s `directory` to `"docs"` if you're running both hosts), then select **`main` branch, `/docs` folder**, or
+   - Use a small GitHub Actions workflow to publish `public/` — ask me to set this up if you want to run GitHub Pages instead of, or alongside, Cloudflare.
+4. GitHub gives you a live URL like `https://MsBlessin.github.io/siff-digital-hub/` within a minute or two.
+5. To add a custom domain: **Settings → Pages → Custom domain**, enter your domain, then add the DNS records GitHub shows you.
 
 Both options are completely free with no credit card required, and both give you free HTTPS.
 
@@ -93,7 +85,7 @@ Both options are completely free with no credit card required, and both give you
 You don't need to install anything complicated. If you have Python installed (most Mac/Linux computers do by default):
 
 ```
-cd SIFF-Digital-Hub
+cd SIFF-Digital-Hub/public
 python3 -m http.server 8000
 ```
 
