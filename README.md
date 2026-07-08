@@ -35,12 +35,13 @@ Current placeholders you'll likely want to fill in:
 - `social.facebook.url` — your Facebook page link
 - `social.website.url` — your live domain, once you set one up (see below)
 - `books.*.url` (three books) — Amazon or other links for each recommended book
+- `teachingLibrary[].url` (28 entries, one per session) — each session's own Zoom recording link. Find the entry by its `title`/`date`, replace its `PLACEHOLDER-ADD-ZOOM-RECORDING-LINK-HERE` with the real link. Any session left as a placeholder shows as "not set yet" on the site rather than a broken or wrong link.
 
 ## Navigation map (already wired up)
 
 - **Home** → Resources, Join Us on Zoom, View Calendar, Listen to Previous Sessions, Ask a Question, About SIFF
 - **Resources** → "View Books" opens **Recommended Reading**
-- **Teaching Library** → every "Listen (Zoom)" link opens the shared Google Drive recordings folder (from `links.json` → `recordingsFolder.url`)
+- **Teaching Library** → each session's "Listen (Zoom)" link is set individually via its own `teachingLibrary[].url` entry in `links.json`
 - Footer on every page links to WhatsApp / Instagram / YouTube / Email
 
 ---

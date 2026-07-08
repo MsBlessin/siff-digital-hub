@@ -423,6 +423,11 @@ table.sessions td.session-date { color: var(--color-body-text); white-space: now
   text-underline-offset: 3px;
 }
 .listen-link svg { width: 15px; height: 15px; }
+.listen-link.is-placeholder {
+  color: var(--color-placeholder-text);
+  text-decoration-style: dashed;
+  cursor: default;
+}
 
 /* ---------- Footer callout box (Resources page) ---------- */
 .callout {

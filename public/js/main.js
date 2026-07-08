@@ -54,6 +54,11 @@
     }
   }
 
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-link-key].is-placeholder");
+    if (el) e.preventDefault();
+  });
+
   document.addEventListener("DOMContentLoaded", function () {
     setCopyrightYear();
 
